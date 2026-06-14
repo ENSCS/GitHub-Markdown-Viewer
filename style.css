@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #faf9f5;
+  --fg: #1d1d1f;
+  --muted: #6e6e73;
+  --border: #e5e5e7;
+  --link: #0071e3;
+  --link-hover: #0077ed;
+  --code-bg: #f5f0e8;
+  --radius: 12px;
+  --font-size: 17px;
+  --h1color: #a9583e;
+  --h2color: #cc785c;
+  --h3color: #17437d;
+}
+
+[data-theme="dark"] {
+  --bg: #181715;
+  --fg: #f5f5f7;
+  --muted: #86868b;
+  --border: #2d2d2d;
+  --link: #2997ff;
+  --link-hover: #47a8ff;
+  --code-bg: #252320;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: var(--font-size);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
+}
+
+.theme-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.theme-toggle,
+.font-btn {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.3em 0.9em;
+  font-size: 0.85em;
+  color: var(--fg);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.theme-toggle:hover,
+.font-btn:hover { background: var(--border); }
+
+/* ========== CONTENT ========== */
+.container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 3rem 2rem 8rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 1.5em 0 0.6em;
+  color: var(--fg);
+}
+h1 { color: var(--h1color); font-family: "Noto Sans Thai"; font-size: 2.2em; margin-top: 1.2em; margin-bottom: 0.4em; line-height: 1.4em; }
+h2 { color: var(--h2color); font-family: "Noto Sans Thai"; font-size: 1.8em; margin-top: 1.0em; }
+h3 { color: var(--h3color); font-family: "Noto Sans Thai"; font-size: 1.4em; }
+h4, h5, h6 { font-size: 1em; color: var(--muted); font-weight: 600; }
+
+p { margin: 1em 0; }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; }
+
+hr { border: none; border-top: 1px solid var(--border); margin: 1.5em 0; }
+
+ul, ol { padding-left: 1.6em; margin: 1em 0; }
+li { margin: 0.4em 0; }
+
+blockquote {
+  border-left: 3px solid var(--border);
+  padding: 0.6em 1.2em;
+  color: var(--muted);
+  margin: 1.5em 0;
+  font-style: italic;
+}
+
+code {
+  background: var(--code-bg);
+  border-radius: 6px;
+  padding: 0.2em 0.45em;
+  font-size: 0.85em;
+  font-family: "SFMono-Regular", Consolas, monospace;
+}
+pre {
+  background: var(--code-bg);
+  border-radius: var(--radius);
+  padding: 1.2em 1.4em;
+  overflow-x: auto;
+  margin: 1.5em 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+pre code { background: none; padding: 0; }
+
+table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.95em; }
+th, td { border: 1px solid var(--border); padding: 0.6em 1em; text-align: left; }
+th { background: var(--code-bg); font-weight: 600; }
+
+img { max-width: 100%; border-radius: var(--radius); }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  body { font-size: 15px; }
+  .container { padding: 1.5rem 1rem 5rem; }
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.3em; }
+  table { font-size: 0.85em; }
+  th, td { padding: 0.4em 0.6em; }
+}
+
+/* ตารางเลื่อนซ้าย-ขวาได้บนมือถือ */
+.container table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+/* ตัดข้อความยาวใน blockquote และ link */
+blockquote, a {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
