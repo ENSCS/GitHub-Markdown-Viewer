@@ -21,9 +21,10 @@
   --fg: #f5f5f7;
   --muted: #86868b;
   --border: #2d2d2d;
-  --link: #2997ff;
+  --link: #205dac;
   --link-hover: #47a8ff;
   --code-bg: #252320;
+  --h3color: #005cb3;
 }
 
 body {

@@ -78,8 +78,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'save') {
 
     if ($slug === '' || $url === '') {
         $error = 'กรุณากรอก Slug และ URL';
-    } elseif (!preg_match('/^[a-z0-9_-]+$/', $slug)) {
-        $error = 'Slug ใช้ได้แค่ a-z, 0-9, - และ _';
+    } elseif (!preg_match('/^[a-zA-Z0-9_-]+$/', $slug)) {
+        $error = 'Slug ใช้ได้แค่ a-z, A-Z, 0-9, - และ _';
     } else {
         // ถ้าเปลี่ยน slug ให้ลบอันเก่าก่อน
         if ($oldSlug !== '' && $oldSlug !== $slug && isset($notes[$oldSlug])) {
@@ -166,7 +166,7 @@ $editUrl  = ($editSlug !== '' && isset($notes[$editSlug])) ? $notes[$editSlug] :
       <input type="hidden" name="action" value="save">
       <input type="hidden" name="old_slug" value="<?php echo htmlspecialchars($editSlug); ?>">
       <div class="form-group">
-        <label>Slug <span style="color:var(--muted);font-size:0.85em;">(a-z, 0-9, -, _)</span></label>
+        <label>Slug <span style="color:var(--muted);font-size:0.85em;">(a-z, A-Z, 0-9, -, _)</span></label>
         <input type="text" name="slug" value="<?php echo htmlspecialchars($editSlug); ?>" placeholder="เช่น mrlikestock" required>
       </div>
       <div class="form-group">

@@ -6,13 +6,47 @@ $files = json_decode(file_get_contents(__DIR__ . '/notelist.json'), true);
 
 // เช็ค slug
 $slug = isset($_GET['file']) ? trim($_GET['file']) : '';
-if ($slug === '' || !isset($files[$slug])) {
+$hasDirectUrl = isset($_GET['url']) && trim($_GET['url']) !== '';
+
+if ($slug === '' && !$hasDirectUrl) {
+    header('Location: /');
+    exit;
+}
+if ($slug !== '' && !isset($files[$slug])) {
     header('Location: /');
     exit;
 }
 
-$url = $files[$slug];
-$content = @file_get_contents($url);
+// ==================== WHITELIST ====================
+$allowedDomains = array(
+    'raw.githubusercontent.com',
+    'www.mrlikestock.com',
+    'www.mrstock.me',
+);
+// ====================================================
+
+// รับ ?url= โดยตรง (ไม่ต้องใช้ notelist.json)
+if ($slug === '' && isset($_GET['url'])) {
+    $directUrl = trim($_GET['url']);
+    $parsed    = parse_url($directUrl);
+    $domain    = isset($parsed['host']) ? $parsed['host'] : '';
+    $path      = isset($parsed['path']) ? $parsed['path'] : '';
+
+    if (!in_array($domain, $allowedDomains)) {
+        header('Location: /');
+        exit;
+    }
+    if (!preg_match('/\.md$/i', $path)) {
+        header('Location: /');
+        exit;
+    }
+
+    $url     = $directUrl;
+    $content = @file_get_contents($url);
+} else {
+    $url     = $files[$slug];
+    $content = @file_get_contents($url);
+}
 $p = new parsedown();
 $p->setBreaksEnabled(true);
 $html = $p->text($content);
