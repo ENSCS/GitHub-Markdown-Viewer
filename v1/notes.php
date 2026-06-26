@@ -57,19 +57,6 @@ $html = preg_replace(
     $html
 );
 
-// ห่อตารางด้วย .table-wrap เพื่อให้ scroll ได้เฉพาะตัวตาราง (ถ้าจำเป็น)
-// แทนที่จะดันให้ทั้งหน้าเลื่อนซ้าย-ขวา
-$html = preg_replace(
-    '/<table>/i',
-    '<div class="table-wrap"><table>',
-    $html
-);
-$html = preg_replace(
-    '/<\/table>/i',
-    '</table></div>',
-    $html
-);
-
 // เพิ่ม id ให้ heading ทุกตัว สำหรับ anchor link
 $html = preg_replace_callback(
     '/<(h[1-6])>(.*?)<\/h[1-6]>/is',

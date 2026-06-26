@@ -117,20 +117,8 @@ pre {
 }
 pre code { background: none; padding: 0; }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5em 0;
-  font-size: 0.95em;
-  table-layout: fixed; /* บีบคอลัมน์ให้พอดีกรอบเสมอ ไม่ดันความกว้างล้น */
-}
-th, td {
-  border: 1px solid var(--border);
-  padding: 0.6em 1em;
-  text-align: left;
-  word-break: break-word;   /* ตัดคำยาว/ไม่มีช่องว่างให้พอดีคอลัมน์ */
-  overflow-wrap: break-word;
-}
+table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.95em; }
+th, td { border: 1px solid var(--border); padding: 0.6em 1em; text-align: left; }
 th { background: var(--code-bg); font-weight: 600; }
 
 img { max-width: 100%; border-radius: var(--radius); }
@@ -145,16 +133,12 @@ img { max-width: 100%; border-radius: var(--radius); }
   th, td { padding: 0.4em 0.6em; }
 }
 
-/* ห่อตารางไว้ใน wrapper: ถ้าตารางมีคอลัมน์เยอะจนยังแน่นเกินไป
-   จะ scroll ได้เฉพาะตัวตาราง ไม่ใช่เลื่อนทั้งหน้า */
-.table-wrap {
-  width: 100%;
+/* ตารางเลื่อนซ้าย-ขวาได้บนมือถือ */
+.container table {
+  display: block;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  margin: 1.5em 0;
-}
-.table-wrap table {
-  margin: 0; /* margin ย้ายไปอยู่ที่ wrapper แล้ว */
+  white-space: nowrap;
 }
 
 /* ตัดข้อความยาวใน blockquote และ link */
